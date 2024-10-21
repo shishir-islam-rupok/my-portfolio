@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protfolio.rupok</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <style>
+    * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    height: 100vh;
+    margin: 0;
+}
+
+.can {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background-color: transparent;
+}
+
+canvas {
+    display: block;
+    position: relative;
+  z-index: -0;
+    width: 100%;
+    height: 100%;
+}
+
+.chat-container {
+    width: 400px;
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+}
+
+.user-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 1rem 0;
+    margin-right: 10px;
+}
+
+.send-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-btn:hover {
+    background-color: #0056b3;
+}
+
+.user-message {
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.ai-message {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+header {
+    width: 100%;
+    background-color: #11182739;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    transition: 1s;
+}
+
+header .logo {
+    color: #00D1B2;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Menu Container */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Menu Links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    position: relative;
+}
+
+nav a:hover {
+    color: #00D1B2;
+}
+
+/* Hamburger Menu Icon for Mobile */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+}
+
+.menu-toggle div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Mobile menu styling */
+.nav-links {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+
+    /* Hide regular menu links on small screens */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        background-color: #111827;
+        text-align: right;
+        padding: 20px 30px;
+    }
+
+    /* Show menu toggle (hamburger icon) */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Show mobile menu when toggled */
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+.cards-container {
+    width: 93%;
+    margin: auto;
+    padding: 5rem 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    opacity: 1;
+    /* Corrected opacity */
+}
+
+.card:hover {
+    transform: perspective(1000px) rotateY(10deg) translateY(-10px);
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #00D1B2;
+}
+
+.card-title {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Portfolio Section */
+.mine-portfolio-section {
+    width: 100%;
+    padding: 2rem;
+}
+
+.portfolio-section {
+    width: 93%;
+    height: auto;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 1rem;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.portfolio-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+}
+
+.portfolio-item .overlay h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.portfolio-item .overlay p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.portfolio-item .overlay a {
+    color: #00D1B2;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #00D1B2;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.portfolio-item .overlay a:hover {
+    background-color: #00D1B2;
+    color: white;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .portfolio-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-section {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .mine-portfolio-section {
+      
+        padding: 0rem;
+    }
+
+    .mine-container {
+        padding: 1rem;
+    }
+}
+
+.mine-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.test {
+    background-color: rgba(53, 53, 199, 0.507);
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    position: fixed;
+    transition: 1s;
+}
+
+@media (max-width: 768px) {
+    .test {
+        background-color: rgba(53, 53, 199, 0.507);
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 0.5rem;
+        border-radius: 1rem;
+        position: fixed;
+        transition: 1s;
+    }
+}
+.light-source {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(10px);
+}
+
+.object {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #ff6347;
+    border-radius: 10px;
+    
+    top: 50%;
+        left: 50%;
+        transform: translate(50% 50%);
+    transform: translate(-50%, -50%);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+@keyframes ldio-rurz9ansjwk {
+    0% {
+        opacity: 1;
+        backface-visibility: hidden;
+        transform: translateZ(0) scale(1.5, 1.5);
+    }
+
+    100% {
+        opacity: 0;
+        backface-visibility: hidden;
+        transform: translateZ(0) scale(1, 1);
+    }
+}
+
+.ldio-rurz9ansjwk div>div {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff727d;
+    animation: ldio-rurz9ansjwk 1s linear infinite;
+}
+
+.ldio-rurz9ansjwk div:nth-child(1)>div {
+    left: 148px;
+    top: 88px;
+    animation-delay: -0.875s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(1) {
+    transform: rotate(0deg);
+    transform-origin: 160px 100px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(2)>div {
+    left: 130px;
+    top: 130px;
+    animation-delay: -0.75s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(2) {
+    transform: rotate(45deg);
+    transform-origin: 142px 142px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(3)>div {
+    left: 88px;
+    top: 148px;
+    animation-delay: -0.625s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(3) {
+    transform: rotate(90deg);
+    transform-origin: 100px 160px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(4)>div {
+    left: 46px;
+    top: 130px;
+    animation-delay: -0.5s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(4) {
+    transform: rotate(135deg);
+    transform-origin: 58px 142px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(5)>div {
+    left: 28px;
+    top: 88px;
+    animation-delay: -0.375s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(5) {
+    transform: rotate(180deg);
+    transform-origin: 40px 100px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(6)>div {
+    left: 46px;
+    top: 46px;
+    animation-delay: -0.25s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(6) {
+    transform: rotate(225deg);
+    transform-origin: 58px 58px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(7)>div {
+    left: 88px;
+    top: 28px;
+    animation-delay: -0.125s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(7) {
+    transform: rotate(270deg);
+    transform-origin: 100px 40px;
+}
+
+.ldio-rurz9ansjwk div:nth-child(8)>div {
+    left: 130px;
+    top: 46px;
+    animation-delay: 0s;
+}
+
+.ldio-rurz9ansjwk>div:nth-child(8) {
+    transform: rotate(315deg);
+    transform-origin: 142px 58px;
+}
+
+.loadingio-spinner-spin-yzaezf3dcmj {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    background: #ffffff00;
+}
+
+.ldio-rurz9ansjwk {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+    /* see note above */
+}
+
+.ldio-rurz9ansjwk div {
+    box-sizing: content-box;
+}
+
+/* [ldio] generated by https://loading.io */
+
+ .portfolio-container {
+     display: flex;
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+     max-width: 900px;
+     width: 100%;
+     overflow: hidden;
+ }
+
+ .text-section {
+     padding: 20px;
+     flex: 1;
+ }
+
+ .text-section h1 {
+     margin-bottom: 10px;
+     color: #333;
+ }
+
+ .text-section p {
+     color: #555;
+     line-height: 1.6;
+ }
+
+ .image-section {
+     width: 300px;
+     /* Fixed width for the image */
+     height: 100%;
+     background-color: #f0f0f0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+ }
+
+ .image-section img {
+     max-width: 100%;
+     max-height: 100%;
+     object-fit: cover;
+     /* Ensure the image covers the container */
+ }
+
+ /* Responsive design */
+ @media (max-width: 768px) {
+     .portfolio-container {
+         flex-direction: column;
+         /* Stack vertically on smaller screens */
+     }
+
+     .image-section {
+         width: 100%;
+         /* Full width on small screens */
+         height: 300px;
+         /* Fixed height for the image section */
+     }
+
+    }
+    .my-salf-con{
+        width: 100%;
+        height: 100%;
+        padding:0 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 999;
+        position: absolute;
+        top: 0;
+    }
+    .image-con{
+        width: 50%;
+        display: flex;
+        justify-content:center;
+    }
+.imge{
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
+       border: 2px dotted #1682da;
+
+    }
+   .imge img{
+        width: 100%;
+        height: 100%;
+    }
+    #Text-con{
+        width: 50%;
+        padding: 1rem;
+        color: #fff;
+    }
+        @media (max-width: 1024px){
+            .my-salf-con {
+                    max-height: 500px;
+                    align-items: center;
+                    margin-top: 10rem;
+                }
+        }
+         @media (max-width: 768px){
+            .my-salf-con{
+            flex-direction: column;
+            align-items: flex-start;
+                
+            }
+             .image-con,#Text-con{
+                width: 100%;
+                padding: 1rem;
+             }
+            .imge {
+                 min-width: 300px;
+                 min-height: 200px;
+                 }
+            #Text-con {
+                 min-width: 100%;
+                 text-align: left;
+                 z-index: 999;
+                 font-size: 0.7rem;
+             }
+         }
+         .mine-slider{
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            padding: 1rem;
+         }
+ .swiper {
+     width: 100%;
+     height: 100%;
+    
+ }
+
+ .swiper-slide {
+    border-radius: 1rem;
+    padding: 1rem;
+     text-align: center;
+     font-size: 18px;
+     background: #fff;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .swiper-slide img {
+     display: block;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+ .swiper-button-next:hover{
+background-color: #55555565;
+transition: 0.4;
+ }
+ .swiper-button-prev:hover{
+background-color: #55555565;
+transition: 0.4;
+ }
+ .icons a{
+text-decoration: none;
+margin: 0.5rem 0.8rem;
+color: rgb(27, 211, 162);
+
+position: relative;
+transition: 0.3s;
+
+ }
+  .icons a:hover{
+color: #ffffff;
+  }
+ .icons a img{
+width: 40px;
+position: absolute;
+top: -22px;
+left: -16px;
+
+ }
+ .icons a i{
+    font-size: 30px;
+ }
+
+
+
+
+ .about-me-container {
+     max-width: 900px;
+     margin: 5rem auto;
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+     display: flex;
+     overflow: hidden;
+     padding: 20px;
+ }
+
+ .about-me-text {
+     flex: 2;
+     padding: 20px;
+ }
+
+ .about-me-text h1 {
+     color: #333;
+     font-size: 2em;
+     margin-bottom: 15px;
+ }
+
+ .about-me-text p {
+     color: #555;
+     line-height: 1.8;
+ }
+
+ .about-me-image {
+     flex: 1;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 10px;
+ }
+
+ .about-me-image img {
+     max-width: 100%;
+     border-radius: 10px;
+     object-fit: cover;
+ }
+
+ /* Responsive design */
+ @media (max-width: 768px) {
+     .about-me-container {
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+     }
+
+     .about-me-image {
+         margin-bottom: 20px;
+     }
+
+     .about-me-text h1 {
+         font-size: 1.5em;
+     }
+ }
+  </style>
+    </head>
+    
+    <body>
+        <header id="hedaer">
+            <!-- Logo -->
+            <div class="logo">Protfolio</div>
+    
+            <!-- Navigation Links -->
+            <nav>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#Protfolio">protfloio</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </nav>
+        </header>
+        <div class="can">
+            <canvas id="canvas" class="fireworks">
+            </canvas>
+            </div>
+            <div class="my-salf-con">
+             <div class="image-con">
+               <div class="imge">
+                <img src="./p.jpg" alt="shishir">
+               </div>
+             </div>
+            <div id="Text-con">
+           <!-- Text Section -->
+            
+                 <h1 style="color: #57b9aa; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" id="title">Welcome to my Portfolio</h1>
+                 <h2 style="color: #fff;">I’m a <span style="color: aqua;" id="typed"></span></h2>
+                 <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hey there! I’m Rupok, a front-end web developer with over two years of experience. I love transforming design concepts
+                into responsive and visually appealing websites. I’m proficient in HTML, CSS, JavaScript, Tailwind CSS, jQuery, and
+                React, which allows me to craft smooth and enjoyable user experiences.I'm passionate about what I do and always aim to provide great value to my clients.</p>
+                <div class="icons">
+                 <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                 <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                 <a href="https://github.com/shishir122-code" target="_blank"><i class="fa-brands fa-github"></i></a>
+                 <a href="https://www.fiverr.com/users/rupok_shishir/manage_gigs?current_filter=active&days_for_stats=30" target="_blank"><i class="fa-solid fa-link"></i></a>
+                </div>
+                 </div>
+            </div>
+           
+        
+        <script>
+           
+        </script>
+        <div id="skills" style=" transition: 1s;" class="mine-card-container">
+            <h2 style="color: #fff; text-align: center; "> My skills</h2>
+<div class="cards-container">
+
+    <!-- Card 1 -->
+    <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">Responsive Web Design</div>
+        <div class="card-description">Creating mobile-friendly, responsive websites that look great on all devices.
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">UI/UX Design</div>
+        <div class="card-description">Designing user-friendly interfaces and ensuring a seamless user experience.</div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+        <div class="card-icon">💻</div>
+        <div class="card-title">Front-End Development</div>
+        <div class="card-description">Writing clean, efficient code using HTML, CSS, and JavaScript to build stunning
+            web pages.</div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+        <div class="card-icon">⚙️</div>
+        <div class="card-title">JavaScript Development</div>
+        <div class="card-description">Bringing websites to life with interactive JavaScript features and
+            functionalities.</div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+        <div class="card-icon">⚛️</div>
+        <div class="card-title">React Development</div>
+        <div class="card-description">Building fast, scalable single-page applications (SPAs) using React.js.</div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">Performance Optimization</div>
+        <div class="card-description">Optimizing websites to ensure fast load times and a smooth user experience.</div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">Cross-Browser Compatibility</div>
+        <div class="card-description">Ensuring websites work consistently across all major browsers and devices.</div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card">
+        <div class="card-icon">🔗</div>
+        <div class="card-title">API Integration</div>
+        <div class="card-description">Integrating third-party APIs to add dynamic functionality to your website.</div>
+    </div>
+</div>
+        </div>
+          
+<!-- Portfolio scction -->
+    <div id="Protfolio" class="mine-portfolio-section">
+        <h2 style="color: #fff; text-align: center;">My Protfolio</h2>
+<div class="portfolio-section">
+    
+    <!-- Portfolio Item 1 -->
+    <div class="portfolio-item">
+        <img src="./pr1.png" alt="Project 1">
+        <div class="overlay">
+            <h3>Project 1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            <a href="https://shorturl.at/iIPdf
+" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Portfolio Item 2 -->
+    <div class="portfolio-item">
+        <img src="./pr2.jpg" alt="Project 2">
+        <div class="overlay">
+            <h3>Project 2</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            <a href="#" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Portfolio Item 3 -->
+    <div class="portfolio-item">
+        <img src="./pr3.png" alt="Project 3">
+        <div class="overlay">
+            <h3>Project 3</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            <a href="#" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Portfolio Item 4 -->
+    <div class="portfolio-item">
+        <img src="./pr4.png" alt="Project 4">
+        <div class="overlay">
+            <h3>Organic</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a href="https://shorturl.at/b1Z9G" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Portfolio Item 5 -->
+    <div class="portfolio-item">
+        <img src="./pr5.png" alt="Project 5">
+        <div class="overlay">
+            <h3>FOODMART</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            <a href="https://shorturl.at/zEhsS" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Portfolio Item 6 -->
+    <div style="padding: 1rem; background-color: aquamarine;" class="portfolio-item">
+        <img src="./pr6.jpg" alt="Project 6">
+        <div class="overlay">
+            <h3>Project 6</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            <a href="#" target="_blank">View Project</a>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- Swiper -->
+     <div class="mine-slider">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="pr1.png" alt="Slide 1" style="width: 100%; height:100%;"></div>
+            <div class="swiper-slide"><img src="pr2.jpg" alt="Slide 2" style="width: 100%; height:100%;"></div>
+            <div class="swiper-slide"><img src="pr3.png" alt="Slide 3" style="width: 100%; height:100%;"></div>
+            <div class="swiper-slide"><img src="pr4.png" alt="Slide 4" style="width: 100%; height:100%;"></div>
+            <div class="swiper-slide"><img src="pr5.png" alt="Slide 5" style="width: 100%; height:100%;"></div>
+            <div class="swiper-slide"><img src="pr6.jpg" alt="Slide 6" style="width: 100%; height:100%;"></div>
+
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+     </div>
+
+<section class="about-me-container">
+    <!-- About Me Text Section -->
+    <div class="about-me-text">
+        <h1>About Me</h1>
+        <p>
+            Hi, I'm rupok! I'm a passionate web developer with a love for creating beautiful and functional
+            websites.
+            I enjoy exploring the latest web technologies and continually improving my skills in front-end and back-end
+            development.
+            In my spare time, I enjoy reading tech blogs, hiking, and experimenting with new programming languages.
+        </p>
+    </div>
+
+    <!-- About Me Image Section -->
+    <div class="about-me-image">
+        <img src="./p.jpg" alt="Your Name">
+    </div>
+</section>
+
+    
+<div class="ather">
+    <!--Chat container-->
+<h2>Ai Chatbot</h2>
+<div class="mine-container ">
+    
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+        <input type="text" id="user-input" class="user-input" placeholder="Type your message here..." />
+        <button id="send-btn" class="send-btn">Send</button>
+    </div>
+</div>
+</div>
+   
+    <footer style="background-color: #111827; padding: 40px 20px; color: white; font-family: 'Arial', sans-serif;">
+    
+        <!-- Footer Container -->
+        <div style="width:93%; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+            <!-- Footer Logo -->
+            <div style="flex-basis: 100%; margin-bottom: 30px; text-align: center;">
+                <img src="/assetcs/logo.png" alt="Rupok's Portfolio Logo" style="max-width: 150px; height: auto;">
+            </div>
+
+            <!-- Footer Sections -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
+                <!-- About Section -->
+                <div style="flex-basis: 30%; margin-bottom: 20px;">
+                    <h3 style="color: #57b9aa; font-size: 18px; margin-bottom: 15px;">About Me</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: #cccccc;">
+                        I'm Rupok, a passionate front-end web developer with over two years of experience. I specialize in creating responsive and visually appealing websites using modern web technologies.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div style="flex-basis: 20%; margin-bottom: 20px;">
+                    <h3 style="color: #57b9aa; font-size: 18px; margin-bottom: 15px;">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #cccccc; text-decoration: none; transition: color 0.3s;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#skills" style="color: #cccccc; text-decoration: none; transition: color 0.3s;">Skills</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#Protfolio" style="color: #cccccc; text-decoration: none; transition: color 0.3s;">Portfolio</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #cccccc; text-decoration: none; transition: color 0.3s;">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #cccccc; text-decoration: none; transition: color 0.3s;">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div style="flex-basis: 25%; margin-bottom: 20px;">
+                    <h3 style="color: #57b9aa; font-size: 18px; margin-bottom: 15px;">Contact Info</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: #cccccc;">
+                        Email: rupok@example.com<br>
+                        Phone: +1 (123) 456-7890<br>
+                        Location: City, Country
+                    </p>
+                </div>
+
+                <!-- Social Media Links -->
+                <div style="flex-basis: 20%; margin-bottom: 20px;">
+                    <h3 style="color: #57b9aa; font-size: 18px; margin-bottom: 15px;">Follow Me</h3>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" target="_blank" style="color: #cccccc; font-size: 24px; transition: color 0.3s;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank" style="color: #cccccc; font-size: 24px; transition: color 0.3s;"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/shishir122-code" target="_blank" style="color: #cccccc; font-size: 24px; transition: color 0.3s;"><i class="fab fa-github"></i></a>
+                        <a href="https://www.fiverr.com/users/rupok_shishir/manage_gigs?current_filter=active&days_for_stats=30" target="_blank" style="color: #cccccc; font-size: 24px; transition: color 0.3s;"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div style="flex-basis: 100%; margin-top: 30px; text-align: center; border-top: 1px solid #333; padding-top: 20px;">
+                <p style="font-size: 14px; color: #888888;">
+                    &copy; 2023 Rupok's Portfolio. All rights reserved.
+                </p>
+            </div>
+        </div>
+        </div>
+    
+        <!-- Bottom Footer -->
+       
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+    gsap.from(".card", {
+            opacity: 0,
+            y: 150,
+            duration: 1,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: "body",
+                start: "top 10%",
+                end: "bottom -10%",
+                toggleActions: "play none none reverse",
+                scrub: 1,
+                markers: false,
+                once: false
+            }
+        });
+
+        gsap.from(".portfolio-section", {
+            opacity: 0,
+        
+            y: 350,
+           
+            duration: 1.5,
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: ".mine-portfolio-section",
+                start: "top 70%",
+                end: "bottom 100%",
+                toggleActions: "play none none reverse",
+                scrub: 1,
+                markers: false,
+                once: false
+            }
+        });
+         gsap.from(".chat-container", {
+                opacity: 1,
+                y: -100,
+                x: -450,
+                duration: 5.5,
+                stagger: 0.3,
+                scrollTrigger: {
+                    trigger: ".mine-container",
+                    start: "top 89%",
+                    end: "bottom 100%",
+                    toggleActions: "play none none reverse",
+                    scrub: 1,
+                    markers: false,
+                    once: false
+                }
+            });
+
+             gsap.from(".imge", {
+                    opacity: 1,
+                    y: 150,
+                    duration: 1,
+                    stagger: 0.3,  
+                      
+                    }
+                );
+                 gsap.from(".mine-slider", {
+                        opacity: 1,
+                        y: -100,
+                        duration: 3.5,
+                        stagger: 0.3,
+                        scrollTrigger: {
+                        trigger: ".mine-slider",
+                        start: "top 89%",
+                        end: "bottom 90%",
+                        toggleActions: "play none none reverse",
+                        scrub: 1,
+                        markers: false,
+                        once: false
+                        }
+                    });
+                          gsap.from("#Text-con", {
+                                opacity: 1,
+                                y: -150,
+                                duration: 1,
+                                stagger: 0.3,
+                                 trigger: ".my-salf-con",
+                              start: "top 10%",
+                              end: "bottom 90%",
+                              toggleActions: "play none none reverse",
+                              scrub: 1,
+                              markers:true,
+                              once: false
+                               
+                                
+                            });
+                            gsap.from(".about-me-container", {
+                                opacity: 1,
+                                y: -150,
+                                duration: 1,
+                                stagger: 0.3,
+                                scrollTrigger: {
+                                    trigger: ".about-me-container",
+                                    start: "top 100%",
+                                    end: "bottom 100%",
+                                    toggleActions: "play none none reverse",
+                                    scrub: 1,
+                                    once: false
+                                }
+                            });
+            
+          
+
+    </script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+    var typed = new Typed("#typed", {
+        strings: ["Developer", "Designer", "Programmer"],
+        typeSpeed: 100,
+        backSpeed: 100,
+        loop: true
+
+    })
+     const light = document.getElementById('light');
+        const object = document.getElementById('object');
+        const maxLightDistance = 500;
+
+        // Function to move the light source based on the mouse position
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            gsap.to(light, {
+                x: mouseX - 100,  // Offset the light source to center on cursor
+                y: mouseY - 100,
+                duration: 0.2,
+            });
+
+            // Calculate the distance between the light and the object
+            const objectRect = object.getBoundingClientRect();
+            const objectX = objectRect.left + objectRect.width / 2;
+            const objectY = objectRect.top + objectRect.height / 2;
+            const distance = Math.hypot(mouseX - objectX, mouseY - objectY);
+
+            // Normalize the distance and calculate the light intensity
+            const lightIntensity = Math.max(0, 1 - distance / maxLightDistance);
+
+            // Apply the intensity effect to the object (scaling and shadow)
+            object.style.boxShadow = `0px 0px ${30 * lightIntensity}px ${20 * lightIntensity}px rgba(255,255,255,${lightIntensity})`;
+            object.style.transform = `translate(-50%, -50%) scale(${1 + 0.3 * lightIntensity})`;
+        });
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        cssMode: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+    });
+</script>
+<script>
+      const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particlesArray = [];
+        let mouse = {
+            x: null,
+            y: null,
+            radius: 150
+        };
+
+        window.addEventListener('mousemove', function (event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        // Particle class
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            // Draw particle
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = '#00FFFF';  // Glowing neon color
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            // Update particle position
+            update() {
+                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                    this.directionY = -this.directionY;
+                }
+
+                // Mouse interactivity
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                        this.x += 3;
+                    }
+                    if (mouse.x > this.x && this.x > this.size * 10) {
+                        this.x -= 3;
+                    }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                        this.y += 3;
+                    }
+                    if (mouse.y > this.y && this.y > this.size * 10) {
+                        this.y -= 3;
+                    }
+                }
+
+                // Move particle
+                this.x += this.directionX;
+                this.y += this.directionY;
+
+                // Redraw particle
+                this.draw();
+            }
+        }
+
+        // Initialize particle array
+        function init() {
+            particlesArray.length = 0;
+            let numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                const size = (Math.random() * 5) + 1;
+                const x = Math.random() * (canvas.width - size * 2) + size;
+                const y = Math.random() * (canvas.height - size * 2) + size;
+                const directionX = (Math.random() * 1) - 0.5;
+                const directionY = (Math.random() * 1) - 0.5;
+                const color = '#00FFFF';  // Neon glow color
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(particle => particle.update());
+            requestAnimationFrame(animate);
+        }
+
+        // Resize event
+        window.addEventListener('resize', function () {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        // Initialize and animate
+        init();
+        animate();
+
+</script>
+<script>
+    window.onscroll = function () { myFunction() };
+
+        function myFunction() {
+            if (document.documentElement.scrollTop > 50) {
+                document.getElementById("hedaer").className = "test";
+            } else {
+                {
+                    document.getElementById("hedaer").className = "";
+                }
+            }
+        }
+
+        // Function to check if elements are in the viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Function to add 'show' class to cards when they are scrolled into view
+        function revealCardsOnScroll() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (isInViewport(card)) {
+                    card.classList.add('show');
+                }
+            });
+        }
+
+        // Event listener for scrolling
+        window.addEventListener('scroll', revealCardsOnScroll);
+
+        // Trigger the function to check card visibility on load
+        document.addEventListener('DOMContentLoaded', revealCardsOnScroll);
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+        // Database of existing questions, answers, and new real-time functionalities
+        const qaDatabase = [
+            // Greetings
+            { question: "hi", answer: "Hello! How can I help you today?" },
+            { question: "hello", answer: "Hi there! How are you doing?" },
+            { question: "time", answer: getTime },
+            { question: "date", answer: getDate },
+            { question: "weather", answer: "Go to google .com for the latest weather updates" },
+
+
+            // Your previously existing questions and answers (sample below)
+            { question: "What is HTML?", answer: "HTML stands for HyperText Markup Language, used to structure web pages." },
+            { question: "What is CSS?", answer: "CSS stands for Cascading Style Sheets and is used for styling web pages." },
+            { question: "What is JavaScript?", answer: "JavaScript is a programming language used to add interactivity to web pages." },
+            // Add more existing questions and answers here...
+
+            // More conversational greetings and phrases
+            { question: "how are you", answer: "I'm just a chatbot, but thanks for asking! How can I help you?" },
+            { question: "what's up", answer: "Not much, just here to answer your questions. What's up with you?" },
+            { question: "howdy", answer: "Howdy! How can I assist you today?" },
+            { question: "hi", answer: "Hello! How can I help you today?" },
+            { question: "hello", answer: "Hi there! How are you doing?" },
+            { question: "hey", answer: "Hey! What can I assist you with today?" },
+            { question: "good morning", answer: "Good morning! What can I do for you?" },
+            { question: "good afternoon", answer: "Good afternoon! How can I help you today?" },
+            { question: "good evening", answer: "Good evening! Do you have any questions for me?" },
+            { question: "how are you", answer: "I'm just a chatbot, but thanks for asking! How can I help you?" },
+            { question: "what's up", answer: "Not much, just here to answer your questions. What's up with you?" },
+            { question: "howdy", answer: "Howdy! How can I assist you today?" },
+
+            // Productivity & Social
+            // Productivity & Social
+            { question: "How can I improve my communication skills?", answer: "Practice active listening, be clear and concise, and pay attention to non-verbal cues." },
+            { question: "What are some effective networking strategies?", answer: "Attend industry events, join professional organizations, and utilize social media platforms like LinkedIn." },
+            { question: "How can I overcome procrastination?", answer: "Break tasks into smaller, manageable steps, set deadlines, and eliminate distractions." },
+            { question: "What are some tips for public speaking?", answer: "Practice your speech, know your audience, use visual aids, and control your breathing to stay calm." },
+            { question: "How can I improve my problem-solving skills?", answer: "Define the problem clearly, brainstorm multiple solutions, evaluate options, and learn from the outcomes." },
+
+            // Personal Development
+            // Personal Development (continued)
+            { question: "How can I develop a growth mindset?", answer: "Embrace challenges, learn from criticism, and view failures as opportunities for growth." },
+            { question: "What are some effective ways to manage stress?", answer: "Practice mindfulness, exercise regularly, and maintain a healthy work-life balance." },
+            { question: "How can I improve my critical thinking skills?", answer: "Question assumptions, analyze information from multiple perspectives, and practice logical reasoning." },
+            { question: "What are some tips for effective goal setting?", answer: "Set SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound), break them into smaller tasks, and track your progress." },
+            { question: "How can I become more resilient?", answer: "Build strong relationships, maintain a positive outlook, and learn from past experiences." },
+
+            // Career Development
+            { question: "How can I advance in my career?", answer: "Continuously learn and update your skills, network with professionals in your field, and seek mentorship opportunities." },
+            { question: "What are some effective leadership skills?", answer: "Develop strong communication, practice active listening, lead by example, and empower your team members." },
+            { question: "How can I improve my negotiation skills?", answer: "Prepare thoroughly, listen actively, focus on mutual benefits, and practice win-win thinking." },
+            { question: "What are some tips for giving effective presentations?", answer: "Know your audience, use visual aids, practice your delivery, and engage your listeners with questions or stories." },
+            { question: "How can I build a strong professional network?", answer: "Attend industry events, join professional associations, engage on LinkedIn, and follow up with new connections." },
+
+            // Health and Wellness (continued)
+            { question: "What are some ways to boost my immune system?", answer: "Eat a balanced diet, get enough sleep, exercise regularly, and manage stress levels." },
+            { question: "How can I improve my posture?", answer: "Be mindful of your sitting and standing positions, strengthen your core muscles, and take regular breaks to stretch." },
+            { question: "What are some effective stress-relief techniques?", answer: "Try deep breathing exercises, meditation, yoga, or engaging in hobbies you enjoy." },
+            { question: "How can I maintain a healthy work-life balance?", answer: "Set clear boundaries between work and personal time, prioritize self-care, and learn to say no to unnecessary commitments." },
+            { question: "What are some tips for staying motivated to exercise?", answer: "Set realistic goals, find activities you enjoy, workout with a friend, and track your progress." },
+
+            // Relationships
+            { question: "How can I improve my communication in relationships?", answer: "Practice active listening, express yourself clearly, be empathetic, and avoid assumptions." },
+            { question: "What are some signs of a healthy relationship?", answer: "Mutual respect, trust, open communication, support for each other's goals, and the ability to resolve conflicts constructively." },
+            { question: "How can I build trust in a relationship?", answer: "Be reliable, honest, and transparent. Follow through on your commitments and respect boundaries." },
+            { question: "What are some ways to show appreciation in a relationship?", answer: "Express gratitude regularly, perform acts of kindness, give compliments, and spend quality time together." },
+            { question: "How can I improve my conflict resolution skills?", answer: "Stay calm, listen to understand, focus on the issue rather than blame, and work together to find solutions." },
+
+            // Financial Management (continued)
+            { question: "How can I start investing with little money?", answer: "Consider micro-investing apps, low-cost index funds, or setting up a high-yield savings account." },
+            { question: "What are some ways to reduce monthly expenses?", answer: "Review and cancel unnecessary subscriptions, negotiate bills, cook at home more often, and use energy-efficient appliances." },
+            { question: "How can I improve my credit score?", answer: "Pay bills on time, keep credit utilization low, avoid opening too many new accounts, and regularly check your credit report for errors." },
+            { question: "What's the best way to save for retirement?", answer: "Start early, contribute to a 401(k) if available, consider opening an IRA, and diversify your investments." },
+            { question: "How can I create a financial emergency fund?", answer: "Set a savings goal, automate your savings, cut unnecessary expenses, and consider a high-yield savings account." },
+
+            // Time Management
+            { question: "How can I stop procrastinating?", answer: "Break tasks into smaller, manageable steps, use the Pomodoro Technique, and eliminate distractions." },
+            { question: "What are some effective time management techniques?", answer: "Use the Eisenhower Matrix to prioritize tasks, practice time blocking, and learn to delegate when possible." },
+            { question: "How can I increase my productivity at work?", answer: "Set clear goals, minimize distractions, take regular breaks, and focus on high-priority tasks during your peak energy hours." },
+            { question: "What are some ways to manage email overload?", answer: "Set specific times to check email, use folders and filters, unsubscribe from unnecessary newsletters, and keep responses brief." },
+            { question: "How can I create a productive morning routine?", answer: "Wake up early, hydrate, exercise, plan your day, and tackle important tasks before checking emails or social media." },
+
+            // Technology and Digital Skills
+            { question: "How can I improve my digital literacy?", answer: "Take online courses, read tech blogs, practice using different software and apps, and stay updated on digital trends." },
+            { question: "What are some essential cybersecurity practices?", answer: "Use strong, unique passwords, enable two-factor authentication, keep software updated, and be cautious of phishing attempts." },
+            { question: "How can I learn to code?", answer: "Start with online resources like Codecademy or freeCodeCamp, choose a programming language to focus on, and practice regularly with small projects." },
+            { question: "What are some tips for creating engaging social media content?", answer: "Know your audience, use high-quality visuals, tell stories, encourage interaction, and post consistently." },
+            { question: "How can I protect my privacy online?", answer: "Use a VPN, be cautious about sharing personal information, adjust privacy settings on social media, and use secure browsing modes." },
+
+            // Continued Learning and Education
+            { question: "How can I develop a lifelong learning habit?", answer: "Set learning goals, read regularly, take online courses, attend workshops or seminars, and seek out new experiences." },
+            { question: "What are some effective study techniques?", answer: "Use active recall, spaced repetition, teach the material to others, and create mind maps or summaries." },
+            { question: "How can I improve my memory?", answer: "Get enough sleep, exercise regularly, practice mindfulness, and use mnemonic devices or visualization techniques." },
+            { question: "What are some ways to stay motivated while learning?", answer: "Set clear goals, reward yourself for progress, find a study buddy or group, and connect the material to real-life applications." },
+            { question: "How can I make the most of online learning?", answer: "Create a dedicated study space, stick to a schedule, actively participate in discussions, and take regular breaks." },
+
+            // Creativity and Innovation
+            { question: "How can I boost my creativity?", answer: "Expose yourself to new experiences, practice brainstorming, keep a journal, and embrace failure as part of the creative process." },
+            { question: "What are some techniques for generating new ideas?", answer: "Try mind mapping, use the SCAMPER technique, practice lateral thinking, and collaborate with others." },
+            { question: "How can I overcome creative blocks?", answer: "Change your environment, take breaks, seek inspiration from different sources, and start with small, manageable tasks." },
+            { question: "What are some ways to foster innovation in a team?", answer: "Encourage diverse perspectives, create a safe space for sharing ideas, reward creativity, and provide resources for experimentation." },
+            { question: "How can I turn my creative ideas into reality?", answer: "Start with a clear plan, break the project into smaller steps, seek feedback, and be persistent in overcoming obstacles." },
+
+            // Environmental Awareness and Sustainability
+            { question: "How can I reduce my carbon footprint?", answer: "Use public transportation or carpool, reduce meat consumption, use energy-efficient appliances, and minimize single-use plastics." },
+            { question: "What are some easy ways to live more sustainably?", answer: "Recycle and compost, use reusable bags and water bottles, conserve water and energy, and support eco-friendly businesses." },
+            { question: "How can I start a home garden?", answer: "Choose a sunny spot, prepare the soil, select plants suitable for your climate, and water and maintain regularly." },
+            { question: "What are some renewable energy sources?", answer: "Solar power, wind energy, hydroelectric power, geothermal energy, and biomass are common renewable energy sources." },
+            { question: "How can I educate others about environmental issues?", answer: "Share information on social media, organize community events, lead by example, and support environmental education programs." },
+
+            // Cultural Awareness and Diversity
+            { question: "How can I become more culturally aware?", answer: "Learn about different cultures, travel if possible, engage with diverse groups of people, and challenge your own biases." },
+            { question: "What are some ways to promote diversity and inclusion?", answer: "Educate yourself and others, speak up against discrimination, support diverse businesses and organizations, and practice inclusive language." },
+            { question: "How can I overcome language barriers?", answer: "Learn basic phrases in other languages, use translation apps, be patient and respectful, and use non-verbal communication effectively." },
+            { question: "What are some benefits of diversity in the workplace?", answer: "Increased creativity and innovation, better problem-solving, improved employee engagement, and enhanced company reputation." },
+            { question: "How can I celebrate cultural differences?", answer: "Attend cultural festivals, try foods from different cultures, learn about various holidays and traditions, and engage in cultural exchange programs." },
+
+            // Mental Health and Well-being
+            { question: "How can I improve my mental health?", answer: "Practice self-care, maintain social connections, seek professional help when needed, and engage in activities you enjoy." },
+            { question: "What are some signs of burnout?", answer: "Exhaustion, cynicism, reduced productivity, irritability, and physical symptoms like headaches or insomnia." },
+            { question: "How can I practice mindfulness in daily life?", answer: "Start with short meditation sessions, practice deep breathing, focus on the present moment, and incorporate mindful eating or walking." },
+            { question: "What are some ways to cope with anxiety?", answer: "Practice relaxation techniques, challenge negative thoughts, maintain a healthy lifestyle, and consider therapy or counseling." },
+            { question: "How can I build resilience?", answer: "Develop a strong support network, maintain a positive outlook, set realistic goals, and learn from past experiences." },
+
+            // Entrepreneurship and Business
+            { question: "How can I start my own business?", answer: "Develop a solid business plan, research your market, secure funding, comply with legal requirements, and build a strong network." },
+            { question: "What are some key traits of successful entrepreneurs?", answer: "Resilience, adaptability, risk-taking, passion, strong work ethic, and the ability to learn from failures." },
+            { question: "How can I fund my startup?", answer: "Consider bootstrapping, seek angel investors or venture capital, apply for loans or grants, or try crowdfunding platforms." },
+            { question: "What are some effective marketing strategies for small businesses?", answer: "Utilize social media marketing, content marketing, email campaigns, networking events, and local partnerships." },
+            { question: "How can I scale my business?", answer: "Focus on customer retention, automate processes where possible, hire the right team, and consider expanding to new markets or product lines." },
+
+            // Communication Skills
+            { question: "How can I become a better listener?", answer: "Practice active listening, avoid interrupting, ask clarifying questions, and provide non-verbal cues of engagement." },
+            { question: "What are some tips for public speaking?", answer: "Know your audience, practice your delivery, use visual aids effectively, and engage your listeners with stories or questions." },
+            { question: "How can I improve my writing skills?", answer: "Read widely, write regularly, seek feedback, and focus on clarity and conciseness in your writing." },
+            { question: "What are some ways to handle difficult conversations?", answer: "Prepare in advance, remain calm and respectful, focus on the issue rather than the person, and seek common ground." },
+            { question: "How can I be more assertive in communication?", answer: "Use 'I' statements, set clear boundaries, practice saying no, and express your needs and opinions confidently." },
+
+            // Personal Finance (continued)
+            { question: "How can I create a budget?", answer: "Track your income and expenses, categorize your spending, set financial goals, and allocate your money accordingly." },
+            { question: "What are some ways to save money on groceries?", answer: "Plan meals in advance, use coupons, buy generic brands, shop seasonally, and avoid impulse purchases." },
+            { question: "How can I negotiate a better salary?", answer: "Research industry standards, highlight your achievements, practice your pitch, and be prepared to discuss non-salary benefits." },
+            { question: "What are some common investment mistakes to avoid?", answer: "Failing to diversify, trying to time the market, neglecting to rebalance your portfolio, and letting emotions drive investment decisions." },
+            { question: "How can I teach my children about money management?", answer: "Give them an allowance, help them set savings goals, teach them about budgeting, and lead by example." },
+
+            // Health and Fitness (continued)
+            { question: "What are some tips for maintaining a healthy diet?", answer: "Eat a variety of fruits and vegetables, choose whole grains, limit processed foods, and practice portion control." },
+            { question: "How can I start a fitness routine?", answer: "Start slowly, set realistic goals, find activities you enjoy, and gradually increase intensity and duration." },
+            { question: "What are some ways to improve sleep quality?", answer: "Maintain a consistent sleep schedule, create a relaxing bedtime routine, limit screen time before bed, and create a comfortable sleep environment." },
+            { question: "How can I reduce the risk of chronic diseases?", answer: "Maintain a healthy weight, exercise regularly, don't smoke, limit alcohol consumption, and get regular health check-ups." },
+            { question: "What are some effective stress management techniques?", answer: "Practice deep breathing, try progressive muscle relaxation, engage in regular physical activity, and maintain social connections." },
+
+            // Technology and Digital Literacy (continued)
+            { question: "How can I protect my computer from viruses?", answer: "Use reputable antivirus software, keep your operating system and applications updated, be cautious when downloading files, and avoid clicking on suspicious links." },
+            { question: "What are some tips for creating strong passwords?", answer: "Use a combination of upper and lowercase letters, numbers, and symbols, avoid personal information, and use different passwords for different accounts." },
+            { question: "How can I improve my typing speed?", answer: "Practice regularly, use online typing tutorials, focus on accuracy before speed, and learn proper finger placement." },
+            { question: "What are some useful keyboard shortcuts?", answer: "Ctrl+C (copy), Ctrl+V (paste), Ctrl+Z (undo), Ctrl+F (find), and Alt+Tab (switch between windows) are common shortcuts." },
+            { question: "How can I stay safe on social media?", answer: "Adjust privacy settings, be cautious about sharing personal information, think before posting, and be aware of phishing attempts." },
+
+            // Career Development (continued)
+            { question: "How can I write an effective resume?", answer: "Tailor it to the job description, highlight your achievements, use action verbs, keep it concise, and proofread carefully." },
+            { question: "What are some tips for acing a job interview?", answer: "Research the company, practice common interview questions, prepare questions to ask, dress appropriately, and follow up with a thank-you note." },
+            { question: "How can I improve my networking skills?", answer: "Attend industry events, join professional associations, engage on LinkedIn, and follow up with new connections." },
+            { question: "What are some ways to stay motivated at work?", answer: "Set clear goals, celebrate small wins, find meaning in your work, maintain work-life balance, and seek new challenges." },
+            { question: "How can I ask for a promotion?", answer: "Document your achievements, research salary ranges, prepare a strong case, and choose the right time to approach your manager." },
+
+            // Relationships and Social Skills (continued)
+            { question: "How can I improve my empathy?", answer: "Practice active listening, try to see situations from others' perspectives, read fiction, and volunteer for causes you care about." },
+            { question: "What are some ways to build trust in relationships?", answer: "Be reliable, communicate openly and honestly, respect boundaries, and show vulnerability." },
+            { question: "How can I make new friends as an adult?", answer: "Join clubs or groups based on your interests, volunteer, take classes, use social apps, and be open to new experiences." },
+            { question: "What are some signs of a toxic relationship?", answer: "Lack of respect, constant criticism, controlling behavior, lack of support, and feeling drained after interactions." },
+            { question: "How can I improve my conflict resolution skills?", answer: "Stay calm, listen actively, focus on the issue rather than blame, and work together to find mutually beneficial solutions." },
+
+            // Personal Development (continued)
+            { question: "How can I build self-confidence?", answer: "Set and achieve small goals, practice positive self-talk, focus on your strengths, and step out of your comfort zone regularly." },
+            { question: "What are some ways to overcome procrastination?", answer: "Break tasks into smaller steps, use the 'two-minute rule', eliminate distractions, and reward yourself for completing tasks." },
+            { question: "How can I develop a growth mindset?", answer: "Embrace challenges, view failures as learning opportunities, focus on the process rather than just the outcome, and cultivate a love for learning." },
+            { question: "What are some effective goal-setting techniques?", answer: "Use the SMART criteria (Specific, Measurable, Achievable, Relevant, Time-bound), write down your goals, and review them regularly." },
+            { question: "How can I improve my decision-making skills?", answer: "Gather relevant information, consider potential outcomes, trust your instincts, and learn from past decisions." },
+
+            // Time Management and Productivity (continued)
+            { question: "How can I create an effective to-do list?", answer: "Prioritize tasks, break larger tasks into smaller steps, be specific, and limit your daily list to 3-5 important items." },
+            { question: "What is the Pomodoro Technique?", answer: "A time management method where you work for 25 minutes, then take a 5-minute break, repeating this cycle four times before taking a longer break." },
+            { question: "How can I reduce distractions while working?", answer: "Use website blockers, turn off notifications, create a dedicated workspace, and communicate your focus time to others." },
+            { question: "What are some ways to improve focus?", answer: "Practice mindfulness, get enough sleep, exercise regularly, and break tasks into smaller, manageable chunks." },
+            { question: "How can I balance multiple projects?", answer: "Prioritize tasks across projects, use project management tools, delegate when possible, and communicate clearly with all stakeholders." },
+
+            // Creativity and Problem Solving (continued)
+            { question: "What is brainstorming?", answer: "A group creativity technique designed to generate a large number of ideas for solving a specific problem." },
+            { question: "How can I think more creatively?", answer: "Expose yourself to new experiences, practice divergent thinking, challenge assumptions, and combine unrelated concepts." },
+            { question: "What is lateral thinking?", answer: "A way of solving problems by approaching them from unexpected angles rather than traditional, logical methods." },
+            { question: "How can I improve my problem-solving skills?", answer: "Define the problem clearly, gather relevant information, generate multiple solutions, evaluate options, and implement the best solution." },
+            { question: "What is the design thinking process?", answer: "A non-linear, iterative process used to understand users, challenge assumptions, redefine problems and create innovative solutions to prototype and test." },
+
+            // Environmental Sustainability (continued)
+            { question: "What is composting?", answer: "The natural process of recycling organic matter, such as leaves and food scraps, into a valuable fertilizer that can enrich soil and plants." },
+            { question: "How can I reduce plastic waste?", answer: "Use reusable bags, water bottles, and containers, avoid single-use plastics, and choose products with minimal packaging." },
+            { question: "What is a carbon footprint?", answer: "The total amount of greenhouse gases produced to directly and indirectly support human activities, usually expressed in equivalent tons of carbon dioxide (CO2)." },
+            { question: "How can I conserve water at home?", answer: "Fix leaks, take shorter showers, use water-efficient appliances, collect rainwater for gardening, and avoid running water unnecessarily." },
+            { question: "What are some eco-friendly transportation options?", answer: "Walking, cycling, using public transportation, carpooling, and using electric or hybrid vehicles." },
+
+            // Financial Literacy (continued)
+            { question: "What is compound interest?", answer: "Interest calculated on the initial principal and also on the accumulated interest of previous periods of a deposit or loan." },
+            { question: "How can I improve my credit score?", answer: "Pay bills on time, keep credit card balances low, don't close old credit accounts, and limit new credit applications." },
+            { question: "What is diversification in investing?", answer: "The practice of spreading investments among various financial instruments, industries, and other categories to reduce risk." },
+            { question: "How can I start saving for retirement?", answer: "Start early, contribute to a 401(k) if available, consider opening an IRA, and increase your savings rate over time." },
+            { question: "What is the difference between a debit card and a credit card?", answer: "A debit card withdraws money directly from your checking account, while a credit card allows you to borrow money up to a certain limit." },
+
+            // Health and Wellness (continued)
+            { question: "What is mindfulness meditation?", answer: "A mental training practice that involves focusing your mind on your experiences (like your own thoughts, feelings, and sensations) in the present moment." },
+            { question: "How can I improve my posture?", answer: "Be mindful of your posture throughout the day, strengthen your core muscles, set up an ergonomic workspace, and take regular breaks to stretch." },
+            { question: "What are some signs of dehydration?", answer: "Thirst, dark-colored urine, fatigue, dizziness, and dry skin are common signs of dehydration." },
+            { question: "How can I boost my immune system?", answer: "Eat a balanced diet rich in fruits and vegetables, get enough sleep, exercise regularly, manage stress, and stay hydrated." },
+            { question: "What are the benefits of regular exercise?", answer: "Improved cardiovascular health, weight management, stronger bones and muscles, better mental health, and reduced risk of chronic diseases." },
+
+            // Communication Skills (continued)
+            { question: "What is active listening?", answer: "Fully concentrating on what is being said rather than just passively 'hearing' the message of the speaker. It involves listening with all senses." },
+            { question: "How can I give constructive feedback?", answer: "Be specific, focus on the behavior not the person, offer suggestions for improvement, and balance negative feedback with positive observations." },
+            { question: "What is nonverbal communication?", answer: "Communication through sending and receiving wordless cues, including facial expressions, body language, tone of voice, and eye contact." },
+            { question: "How can I improve my writing skills?", answer: "Read widely, write regularly, seek feedback, focus on clarity and conciseness, and practice different styles of writing." },
+            { question: "What are some tips for effective email communication?", answer: "Use clear subject lines, keep messages concise, proofread before sending, use a professional tone, and respond promptly." },
+
+            // Technology and Digital Skills (continued)
+            { question: "What is cloud computing?", answer: "The delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ('the cloud')." },
+            { question: "How can I protect my online privacy?", answer: "Use strong passwords, enable two-factor authentication, be cautious about sharing personal information, and use privacy settings on social media." },
+            { question: "What is phishing?", answer: "A cybercrime in which targets are contacted by email, telephone or text message by someone posing as a legitimate institution to lure individuals into providing sensitive data." },
+            { question: "How can I create a strong password?", answer: "Use a mix of uppercase and lowercase letters, numbers, and symbols, make it at least 12 characters long, and avoid using personal information." },
+            { question: "What is a VPN?", answer: "A Virtual Private Network creates a secure, encrypted connection over a less secure network, such as the internet, providing privacy and anonymity." },
+
+            // Entrepreneurship and Business (continued)
+            { question: "What is a business plan?", answer: "A written document describing in detail how a business—usually a startup—defines its objectives and how it plans to achieve its goals." },
+            { question: "What is market research?", answer: "The process of gathering, analyzing and interpreting information about a market, about a product or service to be offered for sale in that market, and about the past, present and potential customers." },
+            { question: "What is a startup?", answer: "A company or project initiated by an entrepreneur to seek, effectively develop, and validate a scalable business model." },
+            { question: "What is bootstrapping in business?", answer: "Starting and growing a business using only personal finances or operating revenues of the new company." },
+            { question: "What is a minimum viable product (MVP)?", answer: "A product with enough features to attract early-adopter customers and validate a product idea early in the product development cycle." },
+
+            // Personal Development (continued)
+            { question: "What is emotional intelligence?", answer: "The capacity to be aware of, control, and express one's emotions, and to handle interpersonal relationships judiciously and empathetically." },
+            { question: "How can I develop a growth mindset?", answer: "Embrace challenges, persist in the face of setbacks, see effort as the path to mastery, learn from criticism, and find lessons and inspiration in the success of others." },
+            { question: "What is self-awareness?", answer: "Conscious knowledge of one's own character, feelings, motives, and desires." },
+            { question: "How can I build resilience?", answer: "Develop a strong support network, maintain a positive outlook, set realistic goals, practice self-care, and learn from past experiences." },
+            { question: "What is the importance of lifelong learning?", answer: "Continuous, voluntary, and self-motivated pursuit of knowledge for either personal or professional reasons, enhancing social inclusion, active citizenship, and personal development." },
+
+            // Relationships and Social Skills (continued)
+            { question: "What is empathy?", answer: "The ability to understand and share the feelings of another." },
+            { question: "How can I improve my social skills?", answer: "Practice active listening, show genuine interest in others, learn to read body language, and engage in social activities regularly." },
+            { question: "What is conflict resolution?", answer: "The process by which two or more parties reach a peaceful resolution to a dispute." },
+            { question: "How can I set healthy boundaries in relationships?", answer: "Identify your limits, communicate them clearly, be consistent, practice self-respect, and learn to say no when necessary." },
+            { question: "What is effective teamwork?", answer: "Collaborating with a group of people to achieve a common goal through sharing knowledge, skills and effort." },
+
+            // Career Development (continued)
+            { question: "What is a cover letter?", answer: "A letter sent with your resume to provide additional information on your skills and experience relevant to the job you are applying for." },
+            { question: "How can I prepare for a job interview?", answer: "Research the company, practice common interview questions, prepare questions to ask, dress appropriately, and bring necessary documents." },
+            { question: "What is networking in a professional context?", answer: "The exchange of information and ideas among people with a common profession or special interest, usually in an informal social setting." },
+            { question: "How can I ask for a raise?", answer: "Research salary ranges for your position, document your achievements, choose the right time, practice your pitch, and be prepared to negotiate." },
+            { question: "What is a career path?", answer: "A sequence of job positions that one undertakes throughout their lifetime, including education, training, and work experience." },
+
+            // Time Management and Productivity (continued)
+            { question: "What is the 80/20 rule (Pareto Principle)?", answer: "The idea that 80% of results come from 20% of efforts, suggesting focusing on the most important tasks for maximum productivity." },
+            { question: "How can I overcome procrastination?", answer: "Break tasks into smaller steps, use the 'two-minute rule', eliminate distractions, and reward yourself for completing tasks." },
+            { question: "What is time blocking?", answer: "A time management method that divides your day into blocks of time, each dedicated to accomplishing a specific task or group of tasks." },
+            { question: "How can I improve my focus?", answer: "Minimize distractions, take regular breaks, practice mindfulness, get enough sleep, and break large tasks into smaller, manageable chunks." },
+            { question: "What is the importance of taking breaks?", answer: "Breaks help prevent decision fatigue, restore motivation, increase productivity and creativity, and reduce stress." },
+
+            // Creativity and Problem Solving (continued)
+            { question: "What is divergent thinking?", answer: "A thought process used to generate creative ideas by exploring many possible solutions." },
+            { question: "How can I overcome creative blocks?", answer: "Change your environment, take breaks, seek inspiration from different sources, and start with small, manageable tasks." },
+            { question: "What is the SCAMPER technique?", answer: "A creative thinking and brainstorming technique that uses a set of directed questions to come up with new ideas for products, services or processes." },
+            { question: "How can I improve my critical thinking skills?", answer: "Question assumptions, reason through logic, diversify your thought processes, and practice evaluating information objectively." },
+            { question: "What is design thinking?", answer: "A methodology for creative problem solving that focuses on understanding users, challenging assumptions, redefining problems and creating innovative solutions to prototype and test." },
+
+            // Health and Wellness (continued)
+            { question: "What is the importance of sleep?", answer: "Sleep is crucial for physical health, cognitive function, emotional well-being, and overall quality of life." },
+            { question: "How can I develop a consistent exercise routine?", answer: "Start small, choose activities you enjoy, schedule workouts like appointments, find an accountability partner, and track your progress." },
+            { question: "What is mindful eating?", answer: "The practice of paying attention to your food, on purpose, moment by moment, without judgment." },
+            { question: "How can I manage stress effectively?", answer: "Practice relaxation techniques, exercise regularly, maintain a healthy diet, get enough sleep, and seek support when needed." },
+            { question: "What are the benefits of meditation?", answer: "Reduced stress, improved concentration, increased self-awareness, better emotional health, and enhanced overall well-being." },
+
+            // Financial Literacy (continued)
+            { question: "What is a credit score?", answer: "A numerical expression based on a statistical analysis of a person's credit files, representing their creditworthiness." },
+            { question: "How can I create a budget?", answer: "Track your income and expenses, categorize your spending, set financial goals, and allocate your money accordingly." },
+            { question: "What is the difference between saving and investing?", answer: "Saving is setting aside money for future use, typically in a low-risk account, while investing involves putting money into assets with the expectation of generating returns over time." },
+            { question: "What is compound interest?", answer: "Interest calculated on the initial principal and also on the accumulated interest of previous periods of a deposit or loan." },
+            { question: "How can I start investing with little money?", answer: "Consider micro-investing apps, low-cost index funds, or setting up a high-yield savings account." },
+
+            // Technology and Digital Skills (continued)
+            { question: "What is artificial intelligence (AI)?", answer: "The simulation of human intelligence processes by machines, especially computer systems." },
+            { question: "How can I protect my computer from malware?", answer: "Use reputable antivirus software, keep your operating system and applications updated, be cautious when downloading files, and avoid clicking on suspicious links." },
+
+            { question: "How can I boost my self-confidence?", answer: "Set achievable goals, practice positive self-talk, and focus on your strengths and accomplishments." },
+            { question: "What are some ways to develop emotional intelligence?", answer: "Practice self-awareness, empathy, and active listening. Reflect on your emotions and those of others." },
+            { question: "How can I become more creative?", answer: "Expose yourself to new experiences, practice brainstorming, and don't fear failure when trying new ideas." },
+            { question: "What are some effective ways to learn a new skill?", answer: "Break the skill into smaller parts, practice regularly, seek feedback, and be patient with your progress." },
+            { question: "How can I improve my decision-making skills?", answer: "Gather relevant information, consider potential outcomes, trust your instincts, and learn from past decisions." },
+            { question: "How can I be more productive?", answer: "Set clear goals, break tasks into smaller steps, minimize distractions, and prioritize important tasks." },
+            { question: "What are some ways to reduce stress?", answer: "Practice deep breathing, exercise, maintain a healthy diet, and take breaks when necessary." },
+            { question: "How can I improve my time management?", answer: "Use a to-do list, set priorities, and allocate specific time slots for each task." },
+            { question: "What’s the best way to stay motivated?", answer: "Set small, achievable goals and reward yourself for progress. Stay positive and visualize success." },
+            { question: "How can I build good habits?", answer: "Start small, be consistent, track your progress, and hold yourself accountable." },
+
+            // Health and Wellness
+            { question: "How can I improve my sleep quality?", answer: "Establish a regular sleep routine, limit screen time before bed, and create a calm sleep environment." },
+            { question: "What are the best ways to stay physically active?", answer: "Incorporate exercise into your daily routine, like walking, jogging, or strength training." },
+            { question: "How much water should I drink each day?", answer: "It’s recommended to drink about 8 glasses of water per day, but individual needs may vary." },
+            { question: "What’s the healthiest way to lose weight?", answer: "Focus on a balanced diet, regular exercise, and portion control rather than quick-fix diets." },
+            { question: "How can I manage anxiety?", answer: "Practice mindfulness, deep breathing exercises, and seek professional help if necessary." },
+
+            // Career and Work
+            { question: "How can I improve my work-life balance?", answer: "Set boundaries, learn to say no, and allocate time for relaxation and personal interests." },
+            { question: "What are some tips for acing a job interview?", answer: "Research the company, practice common questions, dress appropriately, and follow up after the interview." },
+            { question: "How do I ask for a raise or promotion?", answer: "Prepare evidence of your achievements, schedule a meeting, and confidently present your case." },
+            { question: "How can I make my resume stand out?", answer: "Tailor your resume to the job description, highlight key achievements, and keep it concise." },
+            { question: "What’s the best way to deal with workplace stress?", answer: "Take regular breaks, communicate effectively with your team, and set realistic goals." },
+
+            // Finance
+            { question: "How do I start saving money?", answer: "Create a budget, cut unnecessary expenses, and set up automatic savings transfers." },
+            { question: "How can I create a budget that works for me?", answer: "Track your income and expenses, categorize your spending, and allocate money to savings." },
+            { question: "What are some good ways to invest money?", answer: "Consider diversifying your portfolio with stocks, bonds, and other long-term investment options." },
+            { question: "How can I pay off my debt faster?", answer: "Focus on high-interest debt first, make extra payments when possible, and avoid new debt." },
+            { question: "How can I build a good credit score?", answer: "Pay your bills on time, keep credit card balances low, and avoid applying for too much credit." },
+
+            // Technology
+            { question: "How do I keep my phone battery healthy?", answer: "Avoid overcharging, keep your phone cool, and turn off unnecessary apps running in the background." },
+            { question: "How can I improve my internet speed?", answer: "Restart your router, update your hardware, and reduce the number of devices connected." },
+            { question: "How do I protect my personal data online?", answer: "Use strong, unique passwords, enable two-factor authentication, and be cautious of phishing scams." },
+            { question: "What are some essential apps for productivity?", answer: "Try using apps like Todoist, Trello, or Evernote to manage tasks and improve time management." },
+            { question: "How do I troubleshoot slow computer performance?", answer: "Clear your cache, remove unnecessary programs, and consider upgrading your hardware." },
+
+            // Parenting and Family
+            { question: "How can I help my child do better in school?", answer: "Create a consistent study routine, be supportive, and encourage regular reading." },
+            { question: "What’s the best way to discipline children?", answer: "Set clear boundaries, use positive reinforcement, and be consistent with rules." },
+            { question: "How can I encourage my children to read more?", answer: "Introduce them to books that match their interests and read together regularly." },
+            { question: "How do I handle sibling rivalry?", answer: "Encourage cooperation, treat each child fairly, and avoid comparisons." },
+            { question: "How do I deal with picky eaters?", answer: "Offer a variety of healthy foods, avoid pressuring them to eat, and be patient." },
+
+            // Travel and Leisure
+            { question: "What are some tips for budget travel?", answer: "Book flights and accommodations in advance, look for deals, and travel during off-peak seasons." },
+            { question: "How can I pack efficiently for a trip?", answer: "Make a checklist, roll your clothes to save space, and bring only what you need." },
+            { question: "How do I find the best travel deals?", answer: "Use comparison websites, sign up for airline newsletters, and be flexible with your dates." },
+            { question: "How can I stay healthy while traveling?", answer: "Stay hydrated, avoid street food if unsure about hygiene, and keep a basic first aid kit." },
+            { question: "How do I deal with travel anxiety?", answer: "Plan your trip in detail, practice mindfulness, and stay focused on the positive experiences." }
+
+        ];
+
+        const apiKey = "YOUR_OPENWEATHERMAP_API_KEY"; // Replace with your OpenWeatherMap API key
+
+
+
+
+        // Send message and simulate a response
+        document.getElementById('send-btn').addEventListener('click', sendMessage);
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value.trim();
+            if (userInput === "") return;
+
+            addMessage("You: " + userInput, "user-message");
+            document.getElementById('user-input').value = "";
+
+            if (userInput.toLowerCase().startsWith("weather")) {
+                const city = userInput.split(' ')[1];
+                if (city) {
+                    getWeather(city);
+                } else {
+                    addMessage("AI: Please provide a city name to get the weather.", "ai-message");
+                }
+            } else {
+                const aiResponse = findAnswer(userInput);
+                if (typeof aiResponse === "function") {
+                    addMessage("AI: " + aiResponse(), "ai-message");
+                } else {
+                    addMessage("AI: " + aiResponse, "ai-message");
+                }
+            }
+        }
+
+        function addMessage(message, className) {
+            const chatBox = document.getElementById('chat-box');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageElement.classList.add(className);
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        }
+
+        // Find the answer based on user input
+        function findAnswer(userQuestion) {
+            const result = qaDatabase.find(qa => userQuestion.toLowerCase().includes(qa.question.toLowerCase()));
+            return result ? result.answer : "Sorry, I don't have an answer for that.";
+        }
+
+        // Get the current time
+        function getTime() {
+            const now = new Date();
+            return now.toLocaleTimeString();
+        }
+
+        // Get the current date
+        function getDate() {
+            const now = new Date();
+            return now.toDateString();
+        }
+
+        // Get weather for a specific city using OpenWeatherMap API
+        function getWeather(city) {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cod === 200) {
+                        const weather = `The current temperature in ${data.name} is ${data.main.temp}°C with ${data.weather[0].description}.`;
+                        addMessage("AI: " + weather, "ai-message");
+                    } else {
+                        addMessage("AI: I couldn't find weather information for that city.", "ai-message");
+                    }
+                })
+                .catch(() => addMessage("AI: There was an error retrieving the weather data.", "ai-message"));
+        }
+        const chatBox = document.getElementsByClassName('loding');
+        window.addEventListener("load", function (chatBox) {
+            chatBox.style.display = 'block'
+        })
+
+    
+</script>
+</html>
